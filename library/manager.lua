@@ -7,9 +7,8 @@ function Manager.load(name, option)
 end
 
 function Manager.require()
-    print("HI!")
     for key, val in pairs(Manager.plugins) do
-        print(key, val)
+        require(key)
     end
 end
 
