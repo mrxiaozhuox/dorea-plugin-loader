@@ -1,4 +1,4 @@
-package.path = package.path .. ";../library/?.lua"
+package.path = "./library/?.lua;" .. package.path
 
 local manager = require("manager")
 
@@ -14,3 +14,5 @@ manager.load("test", { ["token"] = "DOREA@TEST" })
 function plugin.init(addr)
     manager.require(addr)
 end
+
+return plugin

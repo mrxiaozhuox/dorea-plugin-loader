@@ -11,7 +11,7 @@ function Manager.require(addr)
     local tables = {}
 
     for key, val in pairs(Manager.plugins) do
-        local temp = dofile("../plugin/" .. key .. "/init.lua")
+        local temp = dofile("./plugin/" .. key .. "/init.lua")
 
         temp.db.connect_info = { ["addr"] = addr, ["token"] = val["token"] }
 
