@@ -1,5 +1,4 @@
-package.path = "./library/?.lua;" .. package.path
-package.cpath = "./interface/?.so;" .. package.cpath
+package.path = ROOT_PATH .. "/library/?.lua;" .. package.path
 
 local manager = require("manager")
 
@@ -9,11 +8,7 @@ manager.load("example", { ["token"] = "DOREA@TEST" })
 
 -- end to include
 
--- local service_addr = "[DOREA_SERVICE_ADDR]"
-local service_addr = "127.0.0.01:3451"
-
-
-manager.require(service_addr)
+manager.require(ROOT_PATH)
 
 function CallEvent(event)
     if event == "onload" then
@@ -24,5 +19,3 @@ function CallEvent(event)
         return manager.call_interval()
     end
 end
-
-print(v)

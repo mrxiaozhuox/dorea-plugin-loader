@@ -8,16 +8,13 @@ function Manager.load(name, option)
     Manager.plugins[name] = option
 end
 
-function Manager.require(addr)
+function Manager.require(root_path)
 
     local tables = {}
 
     for key, val in pairs(Manager.plugins) do
 
-        local temp = dofile("./plugin/" .. key .. "/init.lua")
-
-        temp.db.addr = addr
-        temp.db.password = val["token"]
+        local temp = dofile(root_path .. "/plugins/" .. key .. "/init.lua")
 
         tables[key] = temp
 
