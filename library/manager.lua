@@ -20,6 +20,8 @@ function Manager.require(root_path)
 
         Manager.timer[key] = 0
 
+        LOGGER_IN.info("extend plugin loaded: 「 " .. temp.setting.name .. " : " .. temp.setting.version .. " 」")
+
     end
 
     Manager.tables = tables
@@ -55,7 +57,7 @@ function Manager.call_interval()
     for key, val in pairs(Manager.tables) do
 
         if Manager.timer[key] >= val.setting.interval then
-            Manager.timer[key] = 0
+            Manager.timer[key] = 1
             result[key] = val.func.plugin_interval()
         else
             Manager.timer[key] = Manager.timer[key] + 1

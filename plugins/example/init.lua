@@ -14,23 +14,26 @@ module.setting.author = "mrxzx<mrxzx.info@gmail.com>"
 -- 不知道能兼容到什么版本的时候，最好直接锁到当前开发所使用的版本
 module.setting.compatible_version = {"=0.3.0-alpha"}
 
-local logger = module.log
+local logger = module.log -- 日志系统
 
 -- 加载时事件
 module.func.plugin_onload = function ()
-    
+    -- 插件加载时程序
+    module.db:select("default")
+
+    -- local dump = require("dump")
+
 end
 
 -- 卸载时事件
 module.func.plugin_unload = function ()
-    return "Helllo Dorea"
+    -- 插件卸载时程序
 end
 
 -- 定时任务事件
 module.setting.interval = 60 * 60 * 12
 module.func.plugin_interval = function (counter)
-    -- Token 申请的间隔时长建议在 12小时 以内。
-    module.db:apply_token()
+    --- 完成定时任务功能
 end
 
 -- 自定义命令集
