@@ -14,15 +14,17 @@ module.setting.author = "mrxzx<mrxzx.info@gmail.com>"
 -- 不知道能兼容到什么版本的时候，最好直接锁到当前开发所使用的版本
 module.setting.compatible_version = {"=0.3.0-alpha"}
 
+-- Lua依赖列表，会提醒用户安装相关依赖
+-- 请使用 LuaRocks：https://luarocks.org
+module.setting.dependency_lib = {
+    ["dump"] = { ["optional"] = true, ["version"] = "0.1.1" } -- dump: 用于代码调试（可选依赖）
+}
+
 local logger = module.log -- 日志系统
 
 -- 加载时事件
 module.func.plugin_onload = function ()
     -- 插件加载时程序
-    module.db:select("default")
-
-    -- local dump = require("dump")
-
 end
 
 -- 卸载时事件
@@ -41,11 +43,14 @@ module.setting.custom_command = {
     ["target"] = {
         ["argument"] = "1",
         ["function"] = function(i) return module.func.command_target(i) end
-    }
+    },
 }
 
+-- 这个函数也可以不定义在这里，直接写在 `setting` 中
+-- 但为了代码规范，建议还是这么做
+-- 最终返回值为需要在系统中跑的命令 (:
 module.func.command_target = function (info)
-    return "Hello Target"
+    return 'say "hello world"'
 end
 
 -- 将最终模块返回（交给插件调度器调度）

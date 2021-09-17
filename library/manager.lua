@@ -117,9 +117,12 @@ function Manager.call_command(title, argument)
 
                     if not state then
                         -- 调用失败，返回空值
+                        -- 这里这么写不是故意拖长
+                        -- 后续可能会做拓展，所以说先在这里判了
                         return nil
                     end
 
+                    return result
                 end
 
             end
@@ -127,6 +130,9 @@ function Manager.call_command(title, argument)
         end
 
     end
+
+    return nil
+
 end
 
 return Manager
