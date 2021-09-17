@@ -38,7 +38,10 @@ end
 
 -- 自定义命令集
 module.setting.custom_command = {
-    ["target"] = { }
+    ["target"] = {
+        ["argument"] = "1",
+        ["function"] = function(i) return module.func.command_target(i) end
+    }
 }
 
 module.func.command_target = function (info)

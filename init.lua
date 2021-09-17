@@ -64,4 +64,10 @@ end
 
 -- end to include
 
+MANAGER.load("example", {})
+
 MANAGER.require(ROOT_PATH)
+
+
+
+MANAGER.call_command("target", {"1"})
