@@ -12,6 +12,8 @@ function Manager.require(root_path)
 
     local tables = {}
 
+    local db_sys_plugins = "["
+
     for key, val in pairs(Manager.plugins) do
 
         local temp = dofile(root_path .. "/plugins/" .. key .. "/init.lua")
@@ -20,9 +22,18 @@ function Manager.require(root_path)
 
         Manager.timer[key] = 0
 
+
+        db_sys_plugins = db_sys_plugins .. "\"" .. key .. "\"" .. ","
+
         LOGGER_IN.info("extend plugin loaded: 「 " .. temp.setting.name .. " : " .. temp.setting.version .. " 」")
 
     end
+
+
+    -- 插入系统服务数据：插件当前信息
+    DB_MANAGER:select("system")
+    DB_MANAGER:setex("plugins", string.sub(db_sys_plugins, 0, string.len(db_sys_plugins) - 1) .. "]", 0)
+
 
     Manager.tables = tables
 
@@ -69,7 +80,8 @@ function Manager.call_interval()
     return result
 end
 
-function Manager.call_command(title, argument)
+function Manager.call_command(title, arg_info)
+
     for key, val in pairs(Manager.tables) do
 
         local temp = val.setting.custom_command
@@ -77,6 +89,13 @@ function Manager.call_command(title, argument)
         if temp[title] ~= nil then
 
             local target = temp[title]
+
+            local argument
+            if arg_info["argument"] == nil then
+                argument = ">-1"
+            else
+                argument = arg_info["argument"]
+            end
 
             local status = false
             local num_now = #argument
@@ -113,7 +132,7 @@ function Manager.call_command(title, argument)
                 end
 
                 if status then
-                    local state, result = pcall(temp[title]["function"], {})
+                    local state, result = pcall(temp[title]["function"], arg_info)
 
                     if not state then
                         -- 调用失败，返回空值
@@ -124,15 +143,10 @@ function Manager.call_command(title, argument)
 
                     return result
                 end
-
             end
-
         end
-
     end
-
     return nil
-
 end
 
 return Manager

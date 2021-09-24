@@ -34,20 +34,32 @@ end
 if not DB_MANAGER then
     DB_MANAGER = {}
 
-    DB_MANAGER.select = function (db_name)
+    DB_MANAGER.select = function (_, db_name)
         LOGGER_IN.info("selet to `" .. db_name .. "`")
     end
 
-    DB_MANAGER.set = function (key, value, expire)
+    DB_MANAGER.setex = function (_, key, value, expire)
         LOGGER_IN.info("set data: " .. key .. ": " .. value .. " [" .. expire .. "]")
     end
 
-    DB_MANAGER.get = function (key)
+    DB_MANAGER.get = function (_, key)
         LOGGER_IN.info("get data: " .. key)
     end
 
-    DB_MANAGER.delete = function (key)
+    DB_MANAGER.delete = function (_, key)
         LOGGER_IN.info("delete data: " .. key)
+    end
+
+    DB_MANAGER.cache = function (_, info)
+
+        local state, dump = pcall(require, "dump")
+        local message = "[> object <]"
+
+        if state and dump ~= nil then
+            message = dump(info)
+        end
+
+        LOGGER_IN.info("send a cache operation: " .. message)
     end
 
 end
@@ -67,3 +79,5 @@ end
 MANAGER.load("example", {})
 
 MANAGER.require(ROOT_PATH)
+
+DB_MANAGER:cache({sb="1"})

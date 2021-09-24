@@ -1,7 +1,5 @@
 local module = require("interface")
 
--- Dorea-Interface 包使用 Rust 语言提供 so 调用库
-
 -- 插件基本信息定义
 module.setting.name = "Example"
 module.setting.version = "V0.01"
@@ -41,16 +39,17 @@ end
 -- 自定义命令集
 module.setting.custom_command = {
     ["target"] = {
-        ["argument"] = "1",
+        ["argument"] = "=1",
         ["function"] = function(i) return module.func.command_target(i) end
     },
 }
 
 -- 这个函数也可以不定义在这里，直接写在 `setting` 中
 -- 但为了代码规范，建议还是这么做
--- 最终返回值为需要在系统中跑的命令 (:
+-- 返回值会作为客户端回应
 module.func.command_target = function (info)
-    return 'say "hello world"'
+    local dump = require("dump")
+    return 'target: example ' .. dump(info)
 end
 
 -- 将最终模块返回（交给插件调度器调度）
