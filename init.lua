@@ -79,5 +79,3 @@ end
 MANAGER.load("example", {})
 
 MANAGER.require(ROOT_PATH)
-
-DB_MANAGER:cache({sb="1"})
