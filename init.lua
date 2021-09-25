@@ -79,3 +79,5 @@ end
 MANAGER.load("example", {})
 
 MANAGER.require(ROOT_PATH)
+
+-- rust call
