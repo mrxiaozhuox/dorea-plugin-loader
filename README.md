@@ -26,12 +26,10 @@ If you already have to installed the `DoreaDB`, then you need to open the folder
 configure loaded from: "/Users/xxx/Library/Application Support/Dorea"
 ```
 
-2. and you should `clone` this package to this folder:
+2. and you should `clone` this package to this folder: (`sub-folder` name should be `plugin`)
 
 ```
 git clone https://github.com/doreadb/dorea-plugin-loader.git plugin
 ```
 
-the `sub-folder` name should be: `plugin`
-
-3. edit `plugin.toml` and open the switch.
+3. then edit `plugin.toml` and open the switch.
