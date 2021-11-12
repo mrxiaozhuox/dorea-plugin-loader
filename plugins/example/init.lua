@@ -3,14 +3,14 @@ local module = require("interface")
 -- 插件基本信息定义
 module.setting.name = "Example"
 module.setting.version = "V0.01"
-module.setting.author = "mrxzx<mrxzx.info@gmail.com>"
+module.setting.author = "YuKun Liu<mrxzx.info@gmail.com>"
 
 -- 插件兼容信息（table）
 -- 一个插件必须为某个版本兼容则使用：{"=NEEDVERSION"}
 -- 插件支持某个范围内的版本则使用：{">STARTSUPPORT", "<ENDSUPPORT"}
 -- 这个属性开发的主要原因为：Dorea 在前期开发版本中，插件接口将频繁的进行变更。所以说需要限制好兼容版本
 -- 不知道能兼容到什么版本的时候，最好直接锁到当前开发所使用的版本
-module.setting.compatible_version = {"=0.3.0-alpha"}
+module.setting.compatible_version = {"=0.3.0"}
 
 -- Lua依赖列表，会提醒用户安装相关依赖
 -- 请使用 LuaRocks：https://luarocks.org
@@ -44,8 +44,8 @@ module.setting.custom_command = {
     },
 }
 
--- 这个函数也可以不定义在这里，直接写在 `setting` 中
--- 但为了代码规范，建议还是这么做
+-- 这个函数也可以不定义在这里，直接写在 `setting.custom_command` 中
+-- 但为了代码规范，建议还是这么单独编写
 -- 返回值会作为客户端回应
 module.func.command_target = function (info)
     local dump = require("dump")
