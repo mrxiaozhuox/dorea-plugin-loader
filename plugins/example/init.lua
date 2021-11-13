@@ -48,7 +48,12 @@ module.setting.custom_command = {
 -- 但为了代码规范，建议还是这么单独编写
 -- 返回值会作为客户端回应
 module.func.command_target = function (info)
+    
     local dump = require("dump")
+    if dump == nil then
+        dump = module.tool.dump
+    end
+
     return 'target: example ' .. dump(info)
 end
 
