@@ -1,3 +1,7 @@
+-- Dorea Plugin Loader
+-- YuKun Liu <mrxzx.info@gmail.com>
+-- https://dorea.mrxzx.info/
+
 if not ROOT_PATH then
     ROOT_PATH = "."
 end
