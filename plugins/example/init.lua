@@ -54,6 +54,11 @@ module.func.command_target = function (info)
         dump = module.tool.dump
     end
 
+    -- 数据库控制指令：
+    -- local db = module.db:open("db_name") -- 打开某个数据库
+    -- db:get("foo") -- 读取某条数据
+
+
     return 'target: example ' .. dump(info)
 end
 

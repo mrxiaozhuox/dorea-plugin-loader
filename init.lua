@@ -2,14 +2,20 @@
 -- YuKun Liu <mrxzx.info@gmail.com>
 -- https://dorea.mrxzx.info/
 
+-- Program Root Path
+-- DoreaDB will send this item
 if not ROOT_PATH then
     ROOT_PATH = "."
 end
 
+-- Plugin List
+-- DoreaDB will send this item
 if not PLUGIN_LOADER then
     PLUGIN_LOADER = {}
 end
 
+-- Logger Manager
+-- DoreaDB will send this item
 if not LOGGER_IN then
     LOGGER_IN =  {}
 
@@ -35,6 +41,8 @@ if not LOGGER_IN then
 
 end
 
+-- DataBase Manager
+-- DoreaDB will send this item
 if not DB_MANAGER then
     DB_MANAGER = {}
 
@@ -79,8 +87,6 @@ for key, val in pairs(PLUGIN_LOADER) do
 end
 
 -- end to include
-
-MANAGER.load("example", {})
 
 MANAGER.require(ROOT_PATH)
 

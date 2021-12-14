@@ -31,8 +31,8 @@ function Manager.require(root_path)
 
 
     -- 插入系统服务数据：插件当前信息
-    DB_MANAGER:select("system")
-    DB_MANAGER:setex("plugins", string.sub(db_sys_plugins, 0, string.len(db_sys_plugins) - 1) .. "]", 0)
+    local system_db = DB_MANAGER:open("system")
+    system_db:setex("plugins", string.sub(db_sys_plugins, 0, string.len(db_sys_plugins) - 1) .. "]", 0)
 
 
     Manager.tables = tables
